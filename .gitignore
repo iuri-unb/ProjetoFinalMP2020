@@ -1,0 +1,9 @@
+/vendor
+/public/storage
+/storage/backups
+.env
+.idea
+.DS_Store
+.packages
+.quarantine
+.tmb
