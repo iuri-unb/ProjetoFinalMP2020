@@ -7,46 +7,53 @@
 
 ![vendas](https://user-images.githubusercontent.com/47642347/87829178-7721e080-c84c-11ea-9b46-358ced1d5863.gif)
 
+# Leia-me #
 
-### Sobre
+ProjetoFinalMP
 
-*Sistema de cadastro de produtos, usuários (vendedores) e controle de venda.*
+### O nosso link principal? ###
 
-### Instalação
+* Laravel
+* Versão 1.0.0
 
-1. Clone repositório
+## Passo 1 - Copie o exemplo e passe as informações do banco de dados, no exemplo estamos usando sqlite ##
+* `cp database.sqlite database/`
+* `cp .env.example .env`
 
-2. Mude para o diretório
+## Passo 2 - Baixando as bibliotecas necessárias ##
+* `php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"`
+* `php -r "if (hash_file('sha384', 'composer-setup.php') === '756890a4488ce9024fc62c56153228907f1545c228516cbf63f885e036d37e9a59d27d63f46af1d4d07ee0f76181c7d3') { echo 'Installer   verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"`
+* `php composer-setup.php`
+* `php -r "unlink('composer-setup.php');"`
+* `sudo apt install composer`
+* `composer install`
 
-3. Instalar dependências 
-```
-composer install
-```
-4. Update do composer
-```
-composer update
-```
-5. Renomei o arquivo .env.exemple para .env
+## Passo 3 - Criar as Tabelas no banco de dados: ###
+* `php artisan key:generate`
+* `php artisan migrate`
+* `php artisan config:clear`
+* `php artisan config:cache`
 
-6. Gerando a chave para a aplicação
-```
-php artisan key:generate
-```
-7. Subir servidor
-```
-php artisan serve
-```
-Obs:
-Em Teste-Vendas/app/Providers/AppServiceProvider.php
-Comente o seguinte trecho:
-```
- if (env('APP_ENV') !== 'production') {
-     URL::forceScheme('https');
- }
-```
+## Passo 4 - Permissões nas pastas 
+* `sudo chgrp -R www-data storage`
+* `sudo chmod -R ug+rwx storage`
 
+## Passo 5 - Executar o server
+* `php artisan serve`
 
+## Caso haja necessidade atualizar as tabelas ###
+* `php artisan migrate:refresh`
 
+## Caso haja necessidade atualizar as tabelas e inserindo dados ###
+* `php artisan migrate:refresh --seed`
+
+## Caso haja necessidade de inserir dados em uma tabela expecifica
+* `php artisan db:seed --class=UsersSeeder`
+
+## Caso haja necessidade de gerar novamente o dumpautoload das classes novas
+* `Exemplo: Cridou a classe UsersSeeder tem que rodar o comando abaixo e em seguida`
+* `composer dumpautoload -o`
+* `php artisan db:seed --class=UsersSeeder`
 
 
 #### Erro
